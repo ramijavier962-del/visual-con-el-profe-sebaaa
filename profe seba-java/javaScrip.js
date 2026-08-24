@@ -89,4 +89,37 @@ if(lado1 == lado2 || lado2 == lado3){
 }
 if((lado1**2 + lado2**2) == lado3**2 || (lado1**2 + lado3**2) == lado2**2 || (lado2**2 + lado3**2) == lado1**2){
     console.log("el triangulo es rectangulo");
+
 }
+
+
+//ejercicio 8
+// DIAS  DEL MES 1-12 CON SUS NOMBRES Y CANTIDAD DE DIAS
+let mes = 5;
+if(mes == 1){
+    console.log("el mes es enero y tiene 31 días");
+}else if(mes == 2){
+    console.log("el mes es febrero y tiene 28 días");
+}else if(mes == 3){
+    console.log("el mes es marzo y tiene 31 días");
+}else if(mes == 4){
+    console.log("el mes es abril y tiene 30 días");
+}else if(mes == 5){
+    console.log("el mes es mayo y tiene 31 días");
+}else if(mes == 6){
+    console.log("el mes es junio y tiene 30 días");
+}else if(mes == 7){
+    console.log("el mes es julio y tiene 31 días");
+}else if(mes == 8){
+    console.log("el mes es agosto y tiene 31 días");
+}else if(mes == 9){
+    console.log("el mes es septiembre y tiene 30 días");
+}else if(mes == 10){
+    console.log("el mes es octubre y tiene 31 días");
+}else if(mes == 11){
+    console.log("el mes es noviembre y tiene 30 días");
+}else if(mes == 12){
+    console.log("el mes es diciembre y tiene 31 días");
+}else{
+    console.log("el mes no es valido");
+}   
