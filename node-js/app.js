@@ -1,5 +1,5 @@
-console.log("hola mundo");
 
-let nombre = "Ramiro";
+const prompt = promptSync();
 
-console.log("Hola " + nombre);
+const nombre = prompt("¿Cómo te llamas? ");
+console.log("¡Bienvenido a la clase de programación, " + nombre + "!");
