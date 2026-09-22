@@ -138,7 +138,7 @@ if (sueldoNetoProvisorio <= 1200000) {
 //Si la distancia es superior a 20 km, se cobra un recargo fijo de peaje de $1.500 ARS.
 //Mostrar mediante alert() el costo estimado total del viaje.
 
-
+/*
 
 let distanciaKm = parseFloat( prompt("Ingrese la distancia del viaje en kilómetros: "));
 
@@ -180,4 +180,57 @@ if (factorDemanda !== undefined) {
 
     console.log("Factor de demanda aplicado: " + factorDemanda);
     console.log("El costo estimado total del viaje es: $" + tarifaTotal);
+}*/
+
+//Ejercicio 5 – Evaluador de Categoría Tributaria (Monotributo)
+//Un sistema contable debe evaluar los parámetros ingresados para determinar la categoría del Monotributo correspondiente al contribuyente.
+//Requerimientos:
+//Solicitar: Ingresos brutos anuales (ARS) y Superficie afectada (m^2).
+//Escala simplificada de evaluación (se asigna la categoría que cumpla ambos criterios; de superar alguno, salta a la siguiente):
+//Categoría A: Hasta $6.000.000 ARS e ingresos y hasta 30 m^2.
+//Categoría B: Hasta $12.000.000 ARS e ingresos y hasta 45 m^2.
+//Categoría C: Hasta $18.000.000 ARS e ingresos y hasta 85 m^2.
+//Régimen General: Si supera los $18.000.000 ARS o los 85 m^2.
+//Informar por pantalla la categoría asignada mediante alert().
+/*
+let ingresosBrutos = parseFloat(prompt("Ingrese los ingresos brutos anuales (ARS): "));
+let superficieAfectada = parseFloat(prompt("Ingrese la superficie afectada (m^2): "));
+if (ingresosBrutos <= 6000000 && superficieAfectada <= 30) {
+    console.log("Categoría asignada: A");
+}else if (ingresosBrutos <= 12000000 && superficieAfectada <= 45) {
+    console.log("Categoría asignada: B");
+}else if (ingresosBrutos <= 18000000 && superficieAfectada <= 85) {
+    console.log("Categoría asignada: C");
+}else {
+    console.log("Categoría asignada: Régimen General");
+}
+console.log("Ingresos Brutos Anuales: $" + ingresosBrutos);
+console.log("Superficie Afectada: " + superficieAfectada + " m^2");
+*/
+
+//Ejercicio 6 – Scoring Crediticio para Pre-Aprobación de Créditos
+//Una entidad bancaria evalúa solicitudes de crédito personal aplicando un algoritmo de puntuación estricto.
+//Requerimientos:
+//Solicitar mediante prompt(): Ingreso mensual neto, Antigüedad laboral en años, Historial de deudas pendientes ("si" o "no") y Monto del crédito solicitado.
+//Condiciones de aprobación (deben evaluarse secuencialmente):
+//Si posee deudas pendientes ("si"), el crédito queda Rechazado automáticamente.
+//La antigüedad laboral debe ser de al menos 1 año.
+//La cuota mensual estimada (monto solicitado dividido en 12 meses con un 30% de interés fijo) no puede superar el 30% del ingreso mensual neto.
+//Mostrar con alert() si la solicitud fue Pre-Aprobada o Rechazada, detallando el motivo exacto en caso de rechazo.
+let ingresoMensual = parseFloat(prompt("Ingrese su ingreso mensual neto (ARS): "));
+let antiguedadLaboral = parseFloat(prompt("Ingrese su antigüedad laboral en años: "));
+let historialDeudas = prompt("¿Posee deudas pendientes? (si/no): ").toLowerCase();
+let montoCredito = parseFloat(prompt("Ingrese el monto del crédito solicitado (ARS): "));
+if (historialDeudas === "si") {
+    console.log("Solicitud de crédito Rechazada: posee deudas pendientes.");
+} else if (antiguedadLaboral < 1) {
+    console.log("Solicitud de crédito Rechazada: antigüedad laboral insuficiente.");
+}else {
+    let cuotaMensual = (montoCredito * 1.3) / 12; 
+    let porcentajeIngreso = ingresoMensual * 0.3;
+    if (cuotaMensual <= porcentajeIngreso) {
+        console.log("Solicitud de crédito Pre-Aprobada.");
+    } else {
+        console.log("Solicitud de crédito Rechazada: la cuota mensual supera el 30% del ingreso mensual neto.");
+    }
 }
