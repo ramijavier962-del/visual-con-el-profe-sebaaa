@@ -57,6 +57,7 @@ if (estadoCuenta === "suspendida") {
 //Si registra 0 accidentes en el último año, se le otorga un descuento del 10% de bonificación.
 //Si registra 3 o más accidentes, se aplica un recargo del 30% y se inhabilita la opción "todo_riesgo".
 //Mostrar mediante alert() el valor final de la póliza o la negativa de contratación si no cumple las condiciones.
+/*
 let edadConductor = parseInt(prompt("Ingrese la edad del conductor: "));
 let tipoCobertura = prompt("Ingrese el tipo de cobertura (terceros, terceros_completo, todo_riesgo): ").toLowerCase();
 let cantidadAccidentes = parseInt(prompt("Ingrese la cantidad de accidentes en el último año: "));
@@ -85,4 +86,98 @@ let cantidadAccidentes = parseInt(prompt("Ingrese la cantidad de accidentes en e
     }if (cantidadAccidentes >= 3 && tipoCobertura === "todo_riesgo") {
     console.log("No se puede contratar la cobertura 'todo_riesgo' debido a su historial de accidentes.");
     tarifaBase *=1.3; 
+}
+*/
+
+//Ejercicio 3 – Calculadora de Liquidación de Sueldos con Escala de Impuestos
+//Desarrollar la lógica de liquidación salarial para un empleado calculando retenciones de ley e Impuesto a las Ganancias sobre el sueldo bruto.
+//Requerimientos:
+//Solicitar el Sueldo Bruto del trabajador mediante prompt().
+//Retenciones fijas obligatorias:
+//Jubilación: 11%
+//Obra Social: 3%
+//Ley 19.032: 3%
+//Cálculo del Impuesto a las Ganancias sobre el Sueldo Neto Provisorio (Bruto - Retenciones Fijas):
+//Hasta $1.200.000 ARS: Exento (0%).
+//Entre $1.200.001 y $2.000.000 ARS: 15% sobre el excedente de $1.200.000.
+//Más de $2.000.000 ARS: $120.000 base + 25% sobre el excedente de $2.000.000.
+//Imprimir en console.log() el detalle del recibo: Sueldo Bruto, Descuentos de Ley, Retención de Ganancias y Sueldo Neto Final.
+/*
+let sueldoBruto = parseInt(prompt("Ingrese el Sueldo Bruto del trabajador: "));
+let jubilacion = sueldoBruto * 0.11;
+let obraSocial = sueldoBruto * 0.03;
+let ley19032 = sueldoBruto * 0.03;
+let sueldoNetoProvisorio = sueldoBruto - jubilacion - obraSocial - ley19032;
+if (sueldoNetoProvisorio <= 1200000) {
+    console.log("Sueldo Neto Provisorio: $" + sueldoNetoProvisorio + " - Exento de Impuesto a las Ganancias.");
+    console.log("Sueldo Neto Final: $" + sueldoNetoProvisorio);
+} if (sueldoNetoProvisorio > 1200001 && sueldoNetoProvisorio <= 2000000) {
+    let impuestoGanancias = (sueldoNetoProvisorio - 1200000) * 0.15;
+    let sueldoNetoFinal = sueldoNetoProvisorio - impuestoGanancias;
+    console.log("Sueldo Neto Provisorio: $" + sueldoNetoProvisorio);
+    console.log("Retención de Ganancias: $" + impuestoGanancias);
+    console.log("Sueldo Neto Final: $" + sueldoNetoFinal);
+}else {
+    let impuestoGanancias = 120000 + (sueldoNetoProvisorio - 2000000) * 0.25;
+    let sueldoNetoFinal = sueldoNetoProvisorio - impuestoGanancias;
+    console.log("Sueldo Neto Provisorio: $" + sueldoNetoProvisorio);
+    console.log("Retención de Ganancias: $" + impuestoGanancias);
+    console.log("Sueldo Neto Final: $" + sueldoNetoFinal);
+}
+*/
+
+//Ejercicio 4 – Tarificador Dinámico de Plataforma de Transporte
+//Una aplicación de viajes determina la tarifa de un recorrido aplicando multiplicadores según la demanda del momento y la franja horaria.
+//Requerimientos:
+//Solicitar mediante prompt(): Distancia en kilómetros, Tiempo estimado en minutos y Nivel de demanda ("baja", "media", "alta").
+//Valores base: Bajada de bandera = $800 ARS, Costo por km = $350 ARS, Costo por minuto = $80 ARS.
+//Estructura de multiplicador de demanda (switch):
+//"baja": Factor 1.0
+//"media": Factor 1.3
+//"alta": Factor 1.8
+//Si la distancia es superior a 20 km, se cobra un recargo fijo de peaje de $1.500 ARS.
+//Mostrar mediante alert() el costo estimado total del viaje.
+
+
+
+let distanciaKm = parseFloat( prompt("Ingrese la distancia del viaje en kilómetros: "));
+
+let tiempoMinutos = parseFloat(prompt("Ingrese el tiempo estimado del viaje en minutos: "));
+
+let nivelDemanda = prompt("Ingrese el nivel de demanda (baja, media, alta): ").toLowerCase();
+
+let tarifaBase = 800 + (distanciaKm * 350) + (tiempoMinutos * 80);
+
+let factorDemanda;
+
+let tarifaTotal;
+
+switch (nivelDemanda) {
+    case "baja":
+        factorDemanda = 1.0;
+        break;
+
+    case "media":
+        factorDemanda = 1.3;
+        break;
+
+    case "alta":
+        factorDemanda = 1.8;
+        break;
+
+    default:
+        console.log("Nivel de demanda no válido.");
+        break;
+}
+
+if (factorDemanda !== undefined) {
+
+    tarifaTotal = tarifaBase * factorDemanda;
+
+    if (distanciaKm > 20) {
+        tarifaTotal += 1500;
+    }
+
+    console.log("Factor de demanda aplicado: " + factorDemanda);
+    console.log("El costo estimado total del viaje es: $" + tarifaTotal);
 }
