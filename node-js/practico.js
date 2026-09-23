@@ -217,6 +217,7 @@ console.log("Superficie Afectada: " + superficieAfectada + " m^2");
 //La antigüedad laboral debe ser de al menos 1 año.
 //La cuota mensual estimada (monto solicitado dividido en 12 meses con un 30% de interés fijo) no puede superar el 30% del ingreso mensual neto.
 //Mostrar con alert() si la solicitud fue Pre-Aprobada o Rechazada, detallando el motivo exacto en caso de rechazo.
+/*
 let ingresoMensual = parseFloat(prompt("Ingrese su ingreso mensual neto (ARS): "));
 let antiguedadLaboral = parseFloat(prompt("Ingrese su antigüedad laboral en años: "));
 let historialDeudas = prompt("¿Posee deudas pendientes? (si/no): ").toLowerCase();
@@ -234,3 +235,153 @@ if (historialDeudas === "si") {
         console.log("Solicitud de crédito Rechazada: la cuota mensual supera el 30% del ingreso mensual neto.");
     }
 }
+*/
+
+//Ejercicio 7 – Simulador de Cajero Automático con Validación de Extracciones
+/*
+let saldoInicial = 250000;
+let opcion = parseInt(prompt("Seleccione una opción:\n1: Consultar Saldo\n2: Extraer Dinero\n3: Depositar Dinero\n4: Salir"));
+
+switch (opcion) {
+    case 1:
+        console.log("Saldo disponible: $" + saldoInicial);
+        break;
+    case 2:
+        let cantidadExtraer = parseInt(prompt("Ingrese la cantidad a extraer (múltiplo de $1.000): "));
+        if (cantidadExtraer % 1000 !== 0) {
+            console.log("La cantidad a extraer debe ser un múltiplo de $1.000.");
+        } else if (cantidadExtraer > saldoInicial) {
+            console.log("Fondos insuficientes.");
+        } else {
+            saldoInicial -= cantidadExtraer;
+            console.log("Extracción exitosa. Saldo disponible: $" + saldoInicial);
+        }
+        break;
+    case 3:
+        let montoDepositar = parseInt(prompt("Ingrese el monto a depositar: "));
+        saldoInicial += montoDepositar;
+        console.log("Depósito exitoso. Saldo disponible: $" + saldoInicial);
+        break;
+    case 4:
+        console.log("Gracias por utilizar el cajero automático.");
+        break;
+    default:
+        console.log("Opción no válida.");
+}
+        */
+
+//Ejercicio 8 – Motor de Descuentos en Comercio Electrónico
+//Un e-commerce aplica un sistema de promociones acumulativas o excluyentes según el cupón y la membresía del cliente.
+//Requerimientos:
+//Solicitar: Monto total del carrito, Categoría del usuario ("Bronce", "Plata", "Oro") y Código de descuento ingresado ("DESC10", "SUPER20", o ninguno).
+//Reglas:
+//Descuento por membresía: "Plata" obtiene 5%, "Oro" obtiene 15%.
+//Descuento por cupón (switch):
+//"DESC10": 10% adicional.
+//"SUPER20": 20% adicional (solo aplicable a compras mayores a $50.000 ARS).
+//Si la compra final supera los $100.000 ARS, se otorga envío gratis; de lo contrario, se suman $4.500 ARS en concepto de flete.
+//Mostrar en console.log() el detalle del descuento aplicado, costo de envío y total neto a pagar.
+/*
+let montoCarrito = parseFloat(prompt("Ingrese el monto total del carrito (ARS): "));
+let categoriaUsuario = prompt("Ingrese la categoría del usuario (Bronce, Plata, Oro): ").toLowerCase();
+let codigoDescuento = prompt("Ingrese el código de descuento (DESC10, SUPER20, ninguno): ").toUpperCase();
+ let descuentoCupon = 0;
+ let descuentoMembresia = 0;
+
+
+if(categoriaUsuario === "bronce") {
+    descuentoMembresia = 0;}
+if(categoriaUsuario === "plata") {
+    descuentoMembresia = 0.05;}
+if(categoriaUsuario === "oro") {
+    descuentoMembresia = 0.15;}
+   
+
+    switch (codigoDescuento) {
+        case "DEC10":
+             descuentoCupon = 0.10;
+            break;
+        case "SUPER20":
+            if (montoCarrito > 50000) {
+                descuentoCupon = 0.20;}
+            break;
+        case "NINGUNO":
+            descuentoCupon = 0;
+    }
+    if (montoCarrito > 100000) {
+        console.log("Envío gratis aplicado.");
+    }else {
+        let costoEnvio = 4500;
+        console.log("Costo de envío: $" + costoEnvio);
+    }
+    console.log("Descuento por membresía: " + (descuentoMembresia * 100) + "%");
+    console.log("Descuento por cupón: " + (descuentoCupon * 100) + "%");
+    console.log("Total neto a pagar: $" + (montoCarrito * (1 - descuentoMembresia) * (1 - descuentoCupon)));
+*/
+
+//Ejercicio 9 – Sistema de Triaje para Urgencias Médicas
+//Un centro de salud utiliza un algoritmo de triaje para priorizar la atención de pacientes en la guardia médica según sus síntomas.
+//Requerimientos:
+//Solicitar mediante prompt(): Dificultad para respirar ("si" / "no"), Nivel de dolor del 1 al 10 y Presión arterial sistólica (mm Hg).
+//Categorización:
+//Nivel Rojo (Atención Inmediata): Si presenta dificultad para respirar O si la presión es mayor a 180.
+//Nivel Amarillo (Urgencia Media): Si no es nivel rojo, pero el nivel de dolor es mayor o igual a 7 O la presión está entre 140 y 180.
+//Nivel Verde (Consulta Baja Prioridad): En cualquier otro caso.
+/*
+let dificultadRespirar = prompt("¿Presenta dificultad para respirar? (si/no): ").toLowerCase();
+let nivelDolor = parseInt(prompt("Ingrese el nivel de dolor del 1 al 10: "));
+let presionArterial = parseInt(prompt("Ingrese la presión arterial sistólica (mm Hg): "));
+if (dificultadRespirar === "si" || presionArterial > 180) {
+    console.log("Nivel Rojo: Atención Inmediata.");
+     console.log("Tiempo máximo de espera: Inmediato.");
+} else if (nivelDolor >= 7 || (presionArterial >= 140 && presionArterial <= 180)) {
+    console.log("Nivel Amarillo: Urgencia Media.");
+     console.log("Tiempo máximo de espera: 30 minutos.");
+} else {
+    console.log("Nivel Verde: Consulta Baja Prioridad.");
+     console.log("Tiempo máximo de espera: 2 horas.");
+}
+
+*/
+//Ejercicio 10 – Conversor Monetario con Ajuste por Inflación e Impuestos
+//Un simulador financiero permite calcular la conversión de divisas aplicando cotizaciones, comisiones de intercambio y una proyección de inflación mensual.
+//Requerimientos:
+//Solicitar mediante prompt():
+//Monto en Pesos Argentinos (ARS).
+//Moneda de destino ("USD", "EUR", "BRL").
+//Meses de proyección de inflación (entero entre 1 y 12).
+//Cotizaciones fijas: 1{ USD} = 1.300{ ARS}, 1{ EUR} = 1.420{ ARS}, 1{ BRL} = 220{ ARS}.
+//Reglas de cálculo:
+//Aplicar mediante un switch el tipo de cambio seleccionado.
+//Cobrar una comisión del 2% por el servicio de cambio.
+//Estimar la pérdida de poder adquisitivo del saldo en ARS calculando un 4% de inflación mensual acumulada simple sobre la cantidad de meses ingresada ({Monto} \times (1 + 0.04 \times{meses})).
+//Mostrar por consola el monto recibido en la divisa extranjera y el valor equivalente proyectado por la inflación.
+
+let montoARS = parseFloat(prompt("Ingrese el monto en Pesos Argentinos (ARS): "));
+let monedaDestino = prompt("Ingrese la moneda de destino (USD, EUR, BRL): ").toUpperCase();
+let mesesInflacion = parseInt(prompt("Ingrese los meses de proyección de inflación (1-12): "));
+let montoConvertido = 0;
+const cotizaciones = {
+    USD: 1300,
+    EUR: 1420,
+    BRL: 220
+};
+switch (monedaDestino) {
+    case "USD":
+        montoConvertido = montoARS / cotizaciones.USD;
+        break;
+    case "EUR":
+        montoConvertido = montoARS / cotizaciones.EUR;
+        break;
+    case "BRL":
+        montoConvertido = montoARS / cotizaciones.BRL;
+        break;
+    default:
+        console.log("Moneda de destino no válida.");
+        break;
+}
+console.log("Monto convertido antes de comisión: " + montoConvertido.toFixed(2) + " " + monedaDestino);
+let montoConComision = montoConvertido * 0.98;
+console.log("Monto convertido después de comisión del 2%: " + montoConComision.toFixed(2) + " " + monedaDestino);
+let inflacionAcumulada = montoARS * (1 + 0.04 * mesesInflacion);
+console.log("Valor equivalente proyectado por inflación en ARS: $" + inflacionAcumulada.toFixed(2));    
